@@ -8,7 +8,7 @@
 Vagrant.configure("2") do |config|
 
   config.vm.define "master" do |master|
-    master.vm.box = "alpine-k3s"
+    master.vm.box = "fvillafa/alpine-3.15-k3s"
     master.vm.network "private_network", ip: "192.168.56.2"
 
     master.vm.provision "shell", inline: <<-SHELL
@@ -20,7 +20,7 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.define "node" do |node|
-    node.vm.box = "alpine-k3s"
+    node.vm.box = "fvillafa/alpine-3.15-k3s"
     node.vm.network "private_network", ip: "192.168.56.3"
 
     node.vm.provision "shell", inline: <<-SHELL
