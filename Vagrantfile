@@ -18,9 +18,7 @@ Vagrant.configure("2") do |config|
     master.vm.provision "shell", inline: <<-SHELL
 
     curl -sfL https://get.k3s.io | K3S_NODE_NAME="master" INSTALL_K3S_EXEC="--bind-address=#{MASTER_IP} --node-external-ip=#{MASTER_IP} \
-    --flannel-iface=eth1" K3S_TOKEN="UDm7hBK1AEKgVOuQEyLb" K3S_KUBECONFIG_MODE="644" sh -s -
-    
-    cp /etc/rancher/k3s/k3s.yaml /vagrant/kubeconfig.yaml
+    --flannel-iface=eth1" K3S_TOKEN="UDm7hBK1AEKgVOuQEyLb" K3S_KUBECONFIG_MODE="644" sh -s - && cp /etc/rancher/k3s/k3s.yaml /vagrant/kubeconfig.yaml
 
     SHELL
   end
