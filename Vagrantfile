@@ -6,13 +6,14 @@
 # backwards compatibility). Please don't change it unless you know what
 # you're doing.
 
+VAGRANT_BOX="fvillafa/alpine-3.15-k3s"
 MASTER_IP="192.168.56.2"
 NODE_IP="192.168.56.3"
 
 Vagrant.configure("2") do |config|
 
   config.vm.define "master" do |master|
-    master.vm.box = "fvillafa/alpine-3.15-k3s"
+    master.vm.box = VAGRANT_BOX
     master.vm.network "private_network", ip: MASTER_IP
 
     master.vm.provision "shell", inline: <<-SHELL
@@ -28,7 +29,7 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.define "node" do |node|
-    node.vm.box = "fvillafa/alpine-3.15-k3s"
+    node.vm.box = VAGRANT_BOX
     node.vm.network "private_network", ip: NODE_IP
 
     node.vm.provision "shell", inline: <<-SHELL
